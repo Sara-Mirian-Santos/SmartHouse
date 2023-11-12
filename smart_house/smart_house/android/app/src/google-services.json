@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "884413865716",
+    "project_id": "smart-house-23fcf",
+    "storage_bucket": "smart-house-23fcf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884413865716:android:81753eeaa17096dfb948a1",
+        "android_client_info": {
+          "package_name": "com.example.smart_house"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaKJ1Dc558n93Wt5BZJ4_ORJJEGe-IQ3E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
