@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'Home.dart';
+import 'Recuperar_senha.dart';
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized(  );
   await Firebase.initializeApp();
@@ -216,7 +219,23 @@ class _MyhomeState extends State<Myhome> {
                       onPressed: (){
                         _limpar();
                       },
-                      child: const Text("Limpar"))
+                      child: const Text("Limpar")),
+                  ElevatedButton(
+                    onPressed: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => home()));
+                      },
+                      child: const Text("Home")),
+                  ElevatedButton(
+                      onPressed: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => recuperar()));
+                      },
+                      child: const Text("recuperar_senha"))
                   // Text(dados,
                   //   style: TextStyle(
                   //       fontSize: 23
