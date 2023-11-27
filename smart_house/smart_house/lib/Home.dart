@@ -2,7 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class home extends StatefulWidget {
+  const home({super.key});
+
+  @override
+  State<home> createState() => _homeState();
+}
+
+class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +24,7 @@ class Home extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 240, 0),
+            padding: EdgeInsets.fromLTRB(0, 0, 370, 0),
             child: Icon(Icons.person, color: Color(0xff212435), size: 24),
           ),
         ],
@@ -25,21 +32,17 @@ class Home extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
+              child:
                   Container(
                     margin: EdgeInsets.all(0),
                     padding: EdgeInsets.all(0),
-                    width: 250,
+                    width: 300,
                     height: 100,
                     decoration: BoxDecoration(
                       color: Color(0x00ffffff),
@@ -47,43 +50,63 @@ class Home extends StatelessWidget {
                       borderRadius: BorderRadius.zero,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 20),
-                          child: ImageIcon(
-                            AssetImage("images/quarto.png"),
-                            size: 90,
-                            color: Color(0xffffffff),
-                          ),
+                          child:
+                            Container(
+                              width: 100,
+                              height: 100,
+                              decoration: new BoxDecoration(
+                                color: Color.fromRGBO(83, 138, 245, 100),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Padding(padding: EdgeInsets.all(10),
+                              child:ImageIcon(
+                                      AssetImage("images/quarto.png"),
+                                      size: 90,
+                                      color: Color(0xffffffff),
+                                    ),
+                                  ),
+                                ),
+
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 20),
-                          child: ImageIcon(
-                            AssetImage("images/sala-de-estar.png"),
+                          child:Container(
+                            width: 100,
+                            height: 100,
+                            decoration: new BoxDecoration(
+                              color: Color.fromRGBO(83, 138, 245, 100),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(padding: EdgeInsets.all(10),
+                            child: ImageIcon(
+                            AssetImage("images/sala.png"),
                             size: 90,
                             color: Color(0xffffffff),
                           ),
+                          ),
+                        ),
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                   padding: EdgeInsets.all(0),
-                  width: 250,
+                  width: 300,
                   height: 100,
                   decoration: BoxDecoration(
                     color: Color(0x00ffffff),
@@ -98,20 +121,41 @@ class Home extends StatelessWidget {
                       Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                        child: ImageIcon(
+                        child:Container(
+                        width: 100,
+                        height: 100,
+                        decoration: new BoxDecoration(
+                          color: Color.fromRGBO(83, 138, 245, 100),
+                          shape: BoxShape.circle,
+                        ),
+                          child: Padding(padding: EdgeInsets.all(10),
+                          child:ImageIcon(
                           AssetImage("images/cozinha.png"),
                           size: 90,
                           color: Color(0xffffffff),
-                        ),
+                          ),
+                          ),
+                      ),
                       ),
                       Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                        child: ImageIcon(
-                          AssetImage("images/banheiro-publico.png"),
+                        child:Container(
+                        width: 100,
+                        height: 100,
+                        decoration: new BoxDecoration(
+                        color: Color.fromRGBO(83, 138, 245, 100),
+                        shape: BoxShape.circle,
+                        ),
+                        child: Padding(padding: EdgeInsets.all(10),
+                        child:
+                          ImageIcon(
+                          AssetImage("images/banheiro.png"),
                           size: 90,
                           color: Color(0xffffffff),
                         ),
+                        ),
+                        )
                       ),
                     ],
                   ),
@@ -121,14 +165,14 @@ class Home extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Container(
                     margin: EdgeInsets.all(0),
                     padding: EdgeInsets.all(0),
-                    width: 250,
+                    width: 300,
                     height: 100,
                     decoration: BoxDecoration(
                       color: Color(0x00ffffff),
@@ -136,17 +180,28 @@ class Home extends StatelessWidget {
                       borderRadius: BorderRadius.zero,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 90),
-                          child: ImageIcon(
+                        child:Container(
+                          width: 100,
+                          height: 100,
+                          decoration: new BoxDecoration(
+                            color: Color.fromRGBO(83, 138, 245, 100),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Padding(padding: EdgeInsets.all(10),
+                            child: ImageIcon(
                             AssetImage("images/mais.png"),
                             size: 50,
                             color: Color(0xffffffff),
+                          ),
+                          ),
+                            
                           ),
                         ),
                       ],
@@ -161,6 +216,7 @@ class Home extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [],
             ),
+
           ],
         ),
       ),
