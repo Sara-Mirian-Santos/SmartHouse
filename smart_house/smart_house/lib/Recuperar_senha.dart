@@ -2,7 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class Recuperar_senha extends StatelessWidget {
+class recuperar extends StatefulWidget {
+  const recuperar({super.key});
+
+  @override
+  State<recuperar> createState() => _recuperarState();
+}
+
+class _recuperarState extends State<recuperar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,27 +17,23 @@ class Recuperar_senha extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
                   margin: EdgeInsets.all(0),
                   padding: EdgeInsets.all(0),
-                  width: 250,
+                  width: 350,
                   height: 100,
-                  decoration: BoxDecoration(
-                    color: Color(0x00ffffff),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                  ),
+                  color: Color.fromRGBO(196, 200, 197, 100),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -38,7 +41,7 @@ class Recuperar_senha extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
                         child: Text(
                           "Esqueceu sua senha?",
-                          textAlign: TextAlign.start,
+                          textAlign: TextAlign.center,
                           overflow: TextOverflow.clip,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
@@ -50,7 +53,7 @@ class Recuperar_senha extends StatelessWidget {
                       ),
                       Text(
                         "Nós enviaremos um link no seu email",
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.center,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -61,7 +64,7 @@ class Recuperar_senha extends StatelessWidget {
                       ),
                       Text(
                         "para altera-lá :)",
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.center,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -76,22 +79,20 @@ class Recuperar_senha extends StatelessWidget {
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
                   margin: EdgeInsets.all(0),
                   padding: EdgeInsets.all(0),
-                  width: 250,
+                  width: 350,
                   height: 100,
-                  decoration: BoxDecoration(
-                    color: Color(0x00ffffff),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  color: Color.fromRGBO(196, 200, 197, 100),
+                  child: Padding(padding: EdgeInsets.all(20),
+                  child:
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -100,7 +101,7 @@ class Recuperar_senha extends StatelessWidget {
                         child: TextField(
                           controller: TextEditingController(),
                           obscureText: false,
-                          textAlign: TextAlign.start,
+                          textAlign: TextAlign.center,
                           maxLines: 1,
                           style: TextStyle(
                             fontWeight: FontWeight.w400,
@@ -148,26 +149,22 @@ class Recuperar_senha extends StatelessWidget {
                       ),
                     ],
                   ),
+                  )
                 ),
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
                   margin: EdgeInsets.all(0),
                   padding: EdgeInsets.all(0),
-                  width: 250,
+                  width: 350,
                   height: 100,
-                  decoration: BoxDecoration(
-                    color: Color(0x00ffffff),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(30, 10, 30, 40),
+                  color: Color.fromRGBO(196, 200, 197, 100),
+                  child: Padding(padding: EdgeInsets.all(20),
                     child: MaterialButton(
                       onPressed: () {},
                       color: Color(0xff14e9a4),
