@@ -1,6 +1,7 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
+import 'package:smart_house/perfil.dart';
 import 'package:smart_house/quarto.dart';
 import 'package:smart_house/sala.dart';
 
@@ -29,10 +30,49 @@ class _homeState extends State<home> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 370, 0),
-            child: Icon(Icons.person, color: Color(0xff212435), size: 24),
+            padding: EdgeInsets.fromLTRB(0, 0, 360, 0),
+            child:
+              IconButton(
+                  icon: const Icon(Icons.person),
+                  iconSize: 24,
+                  color: Colors.black,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => perfil()));
+                },
+              ),
           ),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(           //barra inferior
+        items: const <BottomNavigationBarItem> [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wifi),
+            label: "",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "",
+          ),
+        ],
+
+        backgroundColor: Color(0xff537bd6),
+        currentIndex: 0,
+        elevation: 8,
+        iconSize: 36,
+        selectedItemColor: Color(0xffd0d3e2),
+        unselectedItemColor: Color(0xff9e9e9e),
+        selectedFontSize: 8,
+        unselectedFontSize:8,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: (value){},
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
