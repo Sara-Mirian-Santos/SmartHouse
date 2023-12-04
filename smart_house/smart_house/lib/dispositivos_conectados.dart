@@ -1,31 +1,68 @@
-import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'DispositivosNconectados.dart';
+import 'perfil.dart';
+import 'Home.dart';
 
-class disp_conectados extends StatefulWidget {
-  const disp_conectados({super.key});
 
+class CloudON extends StatefulWidget {
+  const CloudON({super.key});
   @override
-  State<disp_conectados> createState() => _disp_conectadosState();
+  State<CloudON> createState() => _CloudONState();
 }
 
-class _disp_conectadosState extends State<disp_conectados> {
+class _CloudONState extends State<CloudON> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar:
     AppBar(
       centerTitle: true,
       backgroundColor: Color.fromRGBO(197, 200, 196, 100),
-      // actions: [
-      //   IconButton(onPressed: () {
-      //     Navigator.push(
-      //       context,
-      //     MaterialPageRoute(
-      //         builder: (context) => Perfil()));
-      //   }, icon: Icon(Icons.account_circle_sharp))
-      // ],
+      actions: [
+        IconButton(onPressed: () {
+          Navigator.push(
+            context,
+          MaterialPageRoute(
+              builder: (context) => Perfil()));
+        }, icon: Icon(Icons.account_circle_sharp))
+      ],
      ),
+        bottomNavigationBar: BottomNavigationBar(           //barra inferior
+          items: const <BottomNavigationBarItem> [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.wifi),
+              label: "",
+
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: "",
+            ),
+          ],
+
+          backgroundColor: Color(0xff537bd6),
+          currentIndex: 0,
+          elevation: 8,
+          iconSize: 36,
+          selectedItemColor: Color(0xffd0d3e2),
+          unselectedItemColor: Color(0xff9e9e9e),
+          selectedFontSize: 8,
+          unselectedFontSize:8,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          onTap: (value1){
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => home()));
+          },
+        ),
+
     body:
      Container(
        width: MediaQuery.of(context).size.width,
@@ -43,29 +80,33 @@ class _disp_conectadosState extends State<disp_conectados> {
             padding: const EdgeInsets.fromLTRB(0,50,0,0),
             child: GestureDetector(
               onTap: (){
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => dispNconectados()));
+                        builder: (context) => CloudOff()));
               },
               child: Image(
                 alignment: Alignment.center,
-                image: AssetImage("images/CloudON.png"),
+                color: Colors.green,
+                image: AssetImage("images/Cloud.png"),
                 height: 100,
                 width:140,
                 fit:BoxFit.cover,
               ),
             ),
           ),
-          Text(
-            "Dispositivos conectados: qtdDisp",
-            textAlign: TextAlign.center,
-            style:TextStyle(
-            overflow:TextOverflow.clip,
-              fontWeight:FontWeight.w700,
-              fontStyle:FontStyle.normal,
-              fontSize:14,
-              color:Color(0xff2a1ed4),
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Text(
+              "Dispositivos conectados: qtdDisp",
+              textAlign: TextAlign.center,
+              style:TextStyle(
+              overflow:TextOverflow.clip,
+                fontWeight:FontWeight.w700,
+                fontStyle:FontStyle.normal,
+                fontSize:14,
+                color:Color(0xff2a1ed4),
+              ),
             ),
           ),
           Padding(
