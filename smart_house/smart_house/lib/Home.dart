@@ -29,21 +29,12 @@ class _homeState extends State<home> {
           borderRadius: BorderRadius.zero,
         ),
         actions: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 360, 0),
-            child:
-              IconButton(
-                  icon: const Icon(Icons.person),
-                  iconSize: 24,
-                  color: Colors.black,
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => perfil()));
-                },
-              ),
-          ),
+          IconButton(onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => perfil()));
+          }, icon: Icon(Icons.account_circle_sharp))
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(           //barra inferior
@@ -72,7 +63,12 @@ class _homeState extends State<home> {
         unselectedFontSize:8,
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        onTap: (value){},
+        onTap: (value1){
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => home()));
+        },
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
