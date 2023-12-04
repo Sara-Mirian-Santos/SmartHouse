@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_house/perfil.dart';
 
+import 'Home.dart';
+
 class cozinha extends StatefulWidget {
   const cozinha({super.key});
 
@@ -25,21 +27,12 @@ class _cozinhaState extends State<cozinha> {
           borderRadius: BorderRadius.zero,
         ),
         actions: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 360, 0),
-            child:
-            IconButton(
-              icon: const Icon(Icons.person),
-              iconSize: 24,
-              color: Colors.black,
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => perfil()));
-              },
-            ),
-          ),
+          IconButton(onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => perfil()));
+          }, icon: Icon(Icons.account_circle_sharp))
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(           //barra inferior
@@ -57,6 +50,7 @@ class _cozinhaState extends State<cozinha> {
             label: "",
           ),
         ],
+
         backgroundColor: Color(0xff537bd6),
         currentIndex: 0,
         elevation: 8,
@@ -67,7 +61,12 @@ class _cozinhaState extends State<cozinha> {
         unselectedFontSize:8,
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        onTap: (value){},
+        onTap: (value1){
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => home()));
+        },
       ),
       body: Container(
         alignment: Alignment.center,
