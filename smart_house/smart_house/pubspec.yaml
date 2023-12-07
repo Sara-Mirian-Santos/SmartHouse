@@ -70,6 +70,8 @@ flutter:
    - images/banheiro.png
    - images/mais.png
    - images/CloudON.png
+   - images/Frame 1.png
+   - images/home.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
