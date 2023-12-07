@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:smart_house/perfil.dart';
-
+import 'inicial.dart';
 import 'Home.dart';
 
 class banheiro extends StatefulWidget {
@@ -10,6 +10,11 @@ class banheiro extends StatefulWidget {
 
   @override
   State<banheiro> createState() => _banheiroState();
+}
+
+enum  _MenuValues{
+  editar,
+  excluir,
 }
 
 class _banheiroState extends State<banheiro> {
@@ -147,50 +152,84 @@ class _banheiroState extends State<banheiro> {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: SwitchListTile(
-                  value: _bt_lampada_banheiro,
-                  title: Text(
-                    "Lâmpada",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 345,
+                      child:
+                      SwitchListTile(
+                        value: _bt_lampada_banheiro,
+                        title: Text(
+                          "Lâmpada",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 14,
+                            color: Color(0xff000000),
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                        subtitle: Text(
+                          "Quarto",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 14,
+                            color: Color(0xff000000),
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.zero,
+                          side: BorderSide(color: Color(0xffa3a3a3), width: 1),
+                        ),
+                        onChanged: (bool value) {
+                          setState(() {
+                            _bt_lampada_banheiro = value;
+                          });
+                        },
+                        tileColor: Color(0x00000000),
+                        activeColor: Colors.white,
+                        activeTrackColor: Colors.green,
+                        controlAffinity: ListTileControlAffinity.trailing,
+                        dense: false,
+                        inactiveThumbColor: Colors.white,
+                        inactiveTrackColor: Colors.red,
+                        contentPadding:
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+                        secondary:
+                        Icon(Icons.lightbulb, color: Colors.black, size: 24),
+                        selected: false,
+                        selectedTileColor: Color(0x42000000),
+                      ),
+
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  subtitle: Text(
-                    "Banheiro",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
+                    PopupMenuButton<_MenuValues>(
+                      itemBuilder: (BuildContext context) => [
+                        PopupMenuItem(
+                          child: Text('Editar'),
+                          value: _MenuValues.editar,
+                        ),
+                        PopupMenuItem(
+                          child: Text('Excluir'),
+                          value: _MenuValues.excluir,
+                        ),
+                      ],
+                      onSelected: (value) {
+                        switch (value) {
+                          case _MenuValues.editar:
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (c) => inicio()));
+                            break;
+                          case _MenuValues.excluir:
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (c) => inicio()));
+                            break;
+                        // TODO: Handle this case.
+                        }
+                      },
                     ),
-                    textAlign: TextAlign.left,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                    side: BorderSide(color: Color(0xffa3a3a3), width: 1),
-                  ),
-                  onChanged: (bool value) {
-                    setState(() {
-                      _bt_lampada_banheiro = value;
-                    });
-                  },
-                  tileColor: Color(0x00000000),
-                  activeColor: Colors.white,
-                  activeTrackColor: Colors.green,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                  dense: false,
-                  inactiveThumbColor: Colors.white,
-                  inactiveTrackColor: Colors.red,
-                  contentPadding:
-                  EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-                  secondary:
-                  Icon(Icons.lightbulb, color: Colors.black, size: 24),
-                  selected: false,
-                  selectedTileColor: Color(0x42000000),
+                  ],
                 ),
               ),
               Container(
