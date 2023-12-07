@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-// Future<void> main() async{
-//   WidgetsFlutterBinding.ensureInitialized(  );
-//   await Firebase.initializeApp();
-//   runApp(const MyApp());
-// }
+import 'package:smart_house/login.dart';
+import 'modelos/usuario.dart';
+import 'Home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
@@ -20,92 +18,69 @@ class cadastro_usuario extends StatefulWidget {
 
 
 class _cadastro_usuarioState extends State<cadastro_usuario> {
-  final TextEditingController _txtid = TextEditingController();
-  final TextEditingController _txtnome = TextEditingController();
-  final TextEditingController _txtidade = TextEditingController();
-  final TextEditingController _txtplacar = TextEditingController();
-  String nome = "";
-  String id = "";
-  int idade = 0;
-  int placar = 0;
-  String dados = '';
 
-  String _par1 = '';
-  TextEditingController _par2 = TextEditingController();
+  bool _cadastro = false;
+  // String _botao = "Entrar";
+  String _mensagemErro = "";
+  TextEditingController _controllerEmail = TextEditingController();
+  TextEditingController _controllerSenha = TextEditingController();
 
-  int currentIndex = 0;
-
-
-
-  void _salvardb() async{
-    FirebaseFirestore db = FirebaseFirestore.instance;
-    id = _txtid.text;
-    nome = _txtnome.text;
-    idade = int.parse(_txtidade.text);
-    placar = int.parse(_txtplacar.text);
-    db.collection("001").doc(id).set({"nome": nome, "idade":idade, "placar":placar});
-  }
-  void _deletedb() async{
-    FirebaseFirestore db = FirebaseFirestore.instance;
-    id = _txtid.text;
-    db.collection("001").doc(id).delete();
+  _cadastrar(Usuario usuario){
+    FirebaseAuth auth = FirebaseAuth.instance;
+    auth.createUserWithEmailAndPassword(
+        email: usuario.email,
+        password: usuario.senha
+    ).then((firebaseUser) =>
+        Navigator.pushReplacement(context, //redireciona para a página de anúncios
+            MaterialPageRoute(
+                builder: (context) => login())));
   }
 
-  void _recuperardb() async{
-    FirebaseFirestore db = FirebaseFirestore.instance;
-    DocumentSnapshot snap = await db.collection("001").doc(_txtid.text).get();
-    if(snap.exists) {
-      Map<String,dynamic> info = snap.data() as Map<String, dynamic>;
+  _logar(Usuario usuario){
+    FirebaseAuth auth = FirebaseAuth.instance;
+    auth.signInWithEmailAndPassword(
+        email: usuario.email,
+        password: usuario.senha
+    ).then((firebaseUser) =>
+        Navigator.pushReplacement(context, //redireciona para a página de anúncios
+            MaterialPageRoute(
+                builder: (context) => home())));
+  }
+
+  _validarCampos(){
+    //transfere os campos digitados para as variáveis
+    String email = _controllerEmail.text;
+    String senha = _controllerSenha.text;
+    //compara se os compos estão vazios e email contém @ e senha tenha mais que 5 caracteres
+    if (email.isNotEmpty && email.contains("@")) {
+      if (senha.isNotEmpty && senha.length > 5) {
+        setState(() {
+          _mensagemErro = "";
+        });
+        //define usuário
+        Usuario usuario = Usuario(); //cria o objeto usuario
+        usuario.email = email;
+        usuario.senha = senha;
+        //cadastrar ou logar
+        if (_cadastro) {
+          _cadastrar(usuario);
+        } else {
+          _logar(usuario);
+        }
+      } else { //mensagem de erro de senha
+        setState(() {
+          _mensagemErro = "Preencha a senha! Deve ter mais de 5 caracteres";
+        });
+      }
+    } else { //mensagem de erro de email
       setState(() {
-        dados = "${info['nome']} - ${info['idade']} -${info['placar']}";
-        _txtnome.text = info['nome'];
-        _txtidade.text = info['idade'].toString();
-        _txtplacar.text = info['placar'].toString();
+        _mensagemErro = "Preencha o E-mail válido";
       });
-    }
-    else{
-      showDialog(context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: const Text('Aviso'),
-            content: const Text('Id procurado Não existe no banco de dados'),
-            actions: [
-              ElevatedButton(onPressed: () => Navigator.pop(context,'Ok'),
-                  child: const Text('Ok'))
-            ],
-          ));
+
     }
   }
 
-  void _filtrardb(String campo, TextEditingController tipo) async {
-    FirebaseFirestore db = FirebaseFirestore.instance;
-    QuerySnapshot querySnap = await db.collection("001").
-    where(campo, isEqualTo: tipo.text).
-    // orderBy("idade", descending: true).
-    get();
 
-    for (DocumentSnapshot item in querySnap.docs) {
-      var info = item.data();
-      // print("Dados filtrados: $info");
-      Map<String, dynamic> infomod = info as Map<String, dynamic>;
-      setState(() {
-        // dados = dados + info.toString() + "\n";
-        _txtid.text = item.id;
-        _txtnome.text = infomod['nome'];
-        _txtidade.text = infomod['idade'].toString();
-        _txtplacar.text = infomod['placar'].toString();
-      });
-    }
-  }
-
-  void _limpar() {
-
-    _txtid.text = '';
-    _txtnome.text = '';
-    _txtidade.text = '';
-    _txtplacar.text = '';
-
-  }
-  double sizesetti=40.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,9 +150,9 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
                                     style: const TextStyle(
                                         fontSize: 19
                                     ),
-                                    controller: _txtid,
+                                    // controller: _txtid,
                                     onSubmitted: (String texto) {
-                                      _salvardb();
+
                                     },
                                   ),
                                   const Padding(padding:
@@ -199,10 +174,8 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
                                     style: const TextStyle(
                                         fontSize: 19
                                     ),
-                                    controller: _txtid,
-                                    onSubmitted: (String texto) {
-                                      _salvardb();
-                                    },
+                                    controller: _controllerEmail,
+                                    keyboardType: TextInputType.emailAddress,
                                   ),
                                   const Padding(padding:
                                   EdgeInsets.only(top: 15, bottom: 5),
@@ -223,10 +196,9 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
                                     style: const TextStyle(
                                         fontSize: 19
                                     ),
-                                    controller: _txtid,
-                                    onSubmitted: (String texto) {
-                                      _salvardb();
-                                    },
+                                    obscureText: true,
+                                    controller: _controllerSenha,
+                                    keyboardType: TextInputType.emailAddress,
                                   ),
                                   const Padding(padding:
                                   EdgeInsets.only(top: 15, bottom: 5),
@@ -247,10 +219,9 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
                                     style: const TextStyle(
                                         fontSize: 19
                                     ),
-                                    controller: _txtid,
-                                    onSubmitted: (String texto) {
-                                      _salvardb();
-                                    },
+                                    controller: _controllerSenha,
+                                    keyboardType: TextInputType.emailAddress,
+                                    obscureText: true
                                   ),
                                 ],),
 
@@ -270,13 +241,21 @@ class _cadastro_usuarioState extends State<cadastro_usuario> {
 
                                     ),
                                     onPressed: () {
-                                      _salvardb();
+                                      _cadastro = true;
+                                      _validarCampos();
                                     },
                                     child: const Text("Criar conta", style: TextStyle(
                                         fontSize: 20
                                     ),)),
-
-                              )
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 20),
+                                child: Text(_mensagemErro,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red
+                                  ),),)
                             ]),
                       )],
                   )
